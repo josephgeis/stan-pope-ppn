@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<head>
+<title>"Young and Pope" Pinewood Racing Charts</title>
+
+<script type="text/javascript" src="ppngen.js"></script>
+</head>
+
+<body onLoad="focusLanes();">
+<H1 align=center>Partial Perfect-N Chart Generator<BR>"Young and Pope" Pinewood Racing Charts</H1>
+
+<form name="form1" action=";">
+<table border=1 cellpadding=3>
+<tr valign=top>
+<td>
+<H2 align=center>About the Charts</H2>
+<p>
+<b>
+Partial Perfect-N (PPN) Charts are a concept expounded to me by Cory Young, under the name "<a href="http://www.geocities.com/Yosemite/Rapids/7146/methods.html">Enhanced Lane Rotation</a>."
+They are "final standing" charts, which span the most of the gaps in Perfect-N charts. They satisfy most of the Perfect-N criteria.
+</b>
+
+<p>
+<b>
+A PPN chart is one which satisfies these conditions:
+<table cellpadding=3>
+<tr><td rowspan=2>&nbsp;&nbsp;</td>
+<td><b>1. Each car races the same number of times in each lane (which implies that the number of races is a multiple of the number of cars)</b></td>
+<tr><td><b>2. Equality of opposition is optimized, i.e., no head-to-head matchup count exceeds another by more than 1.</b></td>
+</tr>
+</table>
+
+<p>
+<b>
+There are no known PPN (or better) charts for the following cases: 5 lanes: 20 and 22 cars; 6 lanes: 16, 17, 29, 30, 32, 33, and 34 cars. (Many of these cases fall near Perfect-N charts ... which seems to be a complicating factor.)
+Lower quality charts, labeled "Miscellaneous", are produced for these options.
+Whether the chart is used for awarding trophies or screening for a more accurate finals, more accurate results will be accomplished by running byes in a PPN chart constructed for a slightly larger number of cars.
+</b>
+
+<p>
+<b>
+Accuracy of the PPN charts ranks below Perfect-N, slightly better than Stearns, and above Double Elimination.
+</b>
+
+<p>
+<b>
+This page produces <a href="math.html" target=new>Perfect-N</a> and <a href="cyoung2.html" target=new>Complementary Perfect-N</a> charts when the chart selection parameters allow. Otherwise, it generates Partial Perfect-N charts or, as a last resort "Miscellaneous" charts. The page title tells the type.
+</b>
+
+<p>
+<b>
+Need help on specifying chart parameters?  <a href="ppngenh.htm" target=help>Go Here!</a>
+<BR>For information on usage of the mechanized "Scorekeeper" chart option, see <a href="ppngenh6.htm" target=Help6>Scorekeeper Help</a>.
+</b>
+
+<p>
+<b>
+If you get a browser error message, please see <a href="ppngena.htm" target=new>this!</a>
+</b>
+
+<p>
+<b>
+If you get charts that don't seem to match your input specifications,
+please check here <input type="checkbox" Name="diags">, generate the chart again and send the contents of the PPNGEN DIAGNOSTIC OUTPUTS page to <A HREF="mailto:standcmr@aol.com">Stan</a>.
+</b>
+
+<p>
+<b>
+Check to force Netscape: <input type="checkbox" Name="netscape">
+<br>
+Check to force Internet Explorer: <input type="checkbox" Name="IE">
+</b>
+
+<p>
+<b>
+If you are having trouble saving the page to your local disk or just want all of the pieces close at hand, here is a <a href="http://members.aol.com/standcmr/ppn.zip">45K zip file with versions current as of 3/21/2001.</a>
+</b>
+
+<p>
+<a href="ppngeno.html">Get old version.</a>
+<b>
+</b>
+</td>
+<td>
+<H2 align=center>Making a Chart</H2>
+<table>
+<tr><td align=center colspan=2><big><b>Chart Title</b></big></td></tr>
+
+<tr><td align=left colspan=2><b>Enter the main title for the chart:</b></td></tr>
+
+<tr><td align=right colspan=2><INPUT type="text" Name="ttl" value="" maxlength=30 size=30></td></tr>
+
+<tr><td colspan=2>&nbsp;</td></tr>
+
+<tr><td align=center colspan=2><big><b>Chart Selection</b></big></td></tr>
+
+<tr><td align=left colspan=2><b>Enter Number of Lanes (2 thru 6): </b></td></tr>
+<tr><td align=right colspan=2><input type="text" onFocus="selectLanes();" Name="Lanes" maxlength=1 size=2 value=2 onChange="vdt(this, 2, 6);"></td></tr>
+
+<tr><td align=left colspan=2><b>Enter Number of Cars (2 thru 200): </b> </td></tr>
+<tr><td align=right colspan=2><input type="text" onFocus="selectCars();" Name="Cars" maxlength=3 size=3 value=3 onChange="vdt(this, 2, 200);"></td></tr>
+
+<tr><td align=left colspan=2><b>Enter Number of Rounds (1 thru 12): </b></td></tr>
+<tr><td align=right colspan=2><input type="text" onFocus="selectRounds();" Name="Rounds" maxlength=2 size=2 value=1 onChange="vdt(this, 1, 12);"></td></tr>
+
+<tr><td align=left colspan=2>(3-5 Lane charts mostly limited to 2 rounds;
+  <br>6 Lanes mostly limited to 1 round.)</td></tr>
+
+<tr><td colspan=2>&nbsp;</td></tr>
+
+<tr><td align=center colspan=2><big><b>Output Selection</b></big></td></tr>
+
+<tr><td align=left><b>Select type of output:</b></td>
+<td align=right>
+  <SELECT NAME="OutputSel">
+  <OPTION VALUE=1 SELECTED>Chart
+  <OPTION VALUE=2 >Chart and Scoring Grid
+  <OPTION VALUE=3 >Chart, Separate Scoring Grid
+  <OPTION VALUE=4 >DerbySim
+  <OPTION VALUE=5 >Tab-delimited Text
+  <OPTION VALUE=6 >PPN Scorekeeper
+  </SELECT></td></tr>
+
+<tr><td colspan=2>&nbsp;</td></tr>
+
+<tr><td align=center colspan=2><big><b>Heat Ordering Options</b></big></td></tr>
+
+<tr><td align=left colspan=2>
+  Selecting "Medium" weight for each criterion produces excellent heat sequence.
+  Chart generation times increase when ordering options are used.
+  <!--On older, slower computers this may be very noticable. (Sample times
+  using AOL's Version 4, 16-bit browser for 1-round, 4-lane charts: 20 cars,
+  6 seconds; 40 cars, 25 sec.; 60 cars, 70 sec.)--></td></tr>
+
+<tr><td align=left><b>Keep heat counts even?</b></td>
+<td align=right>
+  <b>Weight:</b>
+  <SELECT NAME="Weight1">
+  <OPTION VALUE=100        >Heavy
+  <OPTION VALUE=10         >Medium
+  <OPTION VALUE=1          >Light
+  <OPTION VALUE=0  SELECTED>Zero
+  </SELECT></td></tr>
+
+<tr><td align=left><b>Avoid cars in consecutive races?</b></td>
+<td align=right>
+  <b>Weight:</b>
+  <SELECT NAME="Weight2">
+  <OPTION VALUE=100        >Heavy
+  <OPTION VALUE=10         >Medium
+  <OPTION VALUE=1          >Light
+  <OPTION VALUE=0  SELECTED>Zero
+  </SELECT></td></tr>
+
+<tr><td align=left><b>Avoid cars in the same lanes in consecutive races?</b></td>
+<td align=right>
+  <b>Weight:</b>
+  <SELECT NAME="Weight3">
+  <OPTION VALUE=100        >Heavy
+  <OPTION VALUE=10         >Medium
+  <OPTION VALUE=1          >Light
+  <OPTION VALUE=0  SELECTED>Zero
+  </SELECT></td></tr>
+
+<tr><td colspan=4>&nbsp;</td></tr>
+
+<tr><td align=center colspan=2><INPUT TYPE="button" VALUE="Press here to Make the Chart" NAME="cB" onClick="wOpn();"></td></tr>
+</table>
+</td>
+</table>
+</form>
+<p>
+Latest revisions:
+<BR>9/11/99: Permit display of multiple simultaneous charts.
+<BR>12/8/99: Correct Chart type for case 6 Lanes, 31 Cars.
+<BR>12/28/99: Correct Chart type for case 5 Lanes, 9 Cars, 2 Rounds
+<BR>2/16/2000: Add tab-delimited output.
+<BR>4/8/2000: Improve "keep heat counts even" ordering algorithm and
+<BR>improve descriptions in the input form.
+<BR>4/15/2000: Reformat and retitle the page;
+<BR>provide diagnostic output option;
+<BR>put "separate scoresheet" on a separate page.
+<BR>5/2/2000: Correct chart type checking for Complementary Perfect N Charts.
+<BR>5/27/2000: Reduce script size to accomodate some browsers;
+<BR>Show estimated time to order charts if estimate exceeds 30 seconds.
+<BR>1/17/2001: Increase car limit to 200
+<BR>1/23/2001: Add charts for 13 and 19 cars on 3 lanes.
+<BR>3/21/2001: Updated zip file to current.
+<BR>1/31/2004: Corrected 5 lane charts for 60 to 200 cars.
+<BR>1/31/2004: Updated zip file to current.
+<p>
+Copyright 1998, 1999, 2000, 2001, 2004 &copy; by <A HREF="mailto:standcmr@aol.com">Stan Pope (standcmr@aol.com)</a> and <A HREF="mailto:cory_young@yahoo.com">Cory Young (cory_young@yahoo.com)</a>.  All rights reserved. Permission is granted to store this file unchanged on your computer for "off-line" chart generation for your pack, district, or council races.
+<BR>
+Source: http://members.aol.com/standcmr/ppngen.html
+<p>
+<IMG SRC="/cgi-bin/counter?name=standcmr/ctr3/ppngen&font=invisible" alt="counter">
+</body>
+</HTML>
